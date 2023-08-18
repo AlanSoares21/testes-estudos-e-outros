@@ -1,0 +1,8 @@
+<section *ngIf="accessToken">
+    <p>
+        Redirecting you to dashboard
+    </p>
+</section>
+<section *ngIf="!accessToken">
+    <a [href]="oAuthUrl">Click here to Login</a>
+</section>

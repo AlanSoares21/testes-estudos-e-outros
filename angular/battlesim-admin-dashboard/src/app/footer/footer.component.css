@@ -1,0 +1,21 @@
+footer {
+    width: auto;
+    background: #44a896;
+}
+footer section {
+    display: flex;
+    justify-content: center;
+}
+footer section > * {
+    margin: 3em;
+}
+footer section div {
+    display: block;
+}
+footer section div h2 {
+    margin-bottom: 0.1em;
+}
+footer section div a {
+    display: block;
+    text-decoration: none;
+}
