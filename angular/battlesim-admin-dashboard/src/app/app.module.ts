@@ -6,19 +6,26 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ApiCallsService } from './api-calls.service';
+import { TypeCheck } from './type-check';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    TypeCheck,
+    ApiCallsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

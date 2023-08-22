@@ -12,3 +12,16 @@ html, body {
 p, a, h1, h2 {
     color: #000;
 }
+
+.btn-primary {
+    text-align: center;
+    color: aliceblue;
+    background: #2d9f7c;
+    border-radius: 2px;
+    display: block;
+    text-decoration: none;
+}
+
+.btn-primary:hover {
+    background: #40d9aa;
+}

@@ -1,0 +1,9 @@
+section {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+section > .btn-primary {
+    max-width: 90%;
+    margin-left: 5%;
+}

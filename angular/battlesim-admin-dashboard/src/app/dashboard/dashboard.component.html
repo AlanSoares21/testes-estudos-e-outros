@@ -1,12 +1,17 @@
-<p>dashboard works!</p>
-<section>
-    <span>Users Connected: x</span>
-    <span>Battles Happening: x</span>
-    <span>Memory Usage: x</span>
-    <span>New Errors: x</span>
+<section *ngIf="!gettingDashboardData && data !== undefined">
+    <span>Users Connected: {{ data.UsersConnected }}</span>
+    <span>Battles Happening: {{ data.BattleHappening }}</span>
+    <span>Memory Usage: {{ data.MemoryUsage }}/Xxx</span>
+    <span>New Errors: {{ data.ErrorsUnhandled }}</span>
+</section>
+<section *ngIf="!gettingDashboardData && data === undefined">
+    <p>Falied on getting dashboard data</p>
+</section>
+<section *ngIf="gettingDashboardData">
+    <p>Getting dashboard data...</p>
 </section>
 <section>
-    <a>Logs</a>
-    <a>Blacklist</a>
-    <a>Players</a>
+    <a class="btn-primary">Logs</a>
+    <a class="btn-primary">Blacklist</a>
+    <a class="btn-primary">Players</a>
 </section>
