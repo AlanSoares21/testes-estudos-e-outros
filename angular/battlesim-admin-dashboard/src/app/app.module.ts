@@ -8,7 +8,6 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiCallsService } from './api-calls.service';
-import { TypeCheck } from './type-check';
 
 @NgModule({
   declarations: [
@@ -23,7 +22,6 @@ import { TypeCheck } from './type-check';
     HttpClientModule
   ],
   providers: [
-    TypeCheck,
     ApiCallsService
   ],
   bootstrap: [AppComponent]
