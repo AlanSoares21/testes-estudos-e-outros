@@ -5,6 +5,8 @@ const e = ex();
 
 e.use(cors())
 
+const authkeys: string[] = [];
+
 interface ApiError {
     message: string;
 }
@@ -57,12 +59,15 @@ for (let index = 0; index < players.length; index += 10) {
     );
 }
 
+const routes = ex.Router();
 
 e.get('/Auth/Login', (req, res) => {
-    res.redirect('http://localhost:4200?accessToken=test')
+    const keys = Date.now().toString()
+    authkeys.push(keys)
+    res.redirect(`http://localhost:4200?accessToken=${keys}`)
 })
 
-e.get('/DashboardMetrics', (req, res) => {
+routes.get('/DashboardMetrics', (req, res) => {
     res.json({
         UsersConnected: 31,
         BattleHappening: 5,
@@ -72,12 +77,12 @@ e.get('/DashboardMetrics', (req, res) => {
 })
 
 // listar players -> entityName, email, last login, 
-e.get('/Players', (req, res) => {
+routes.get('/Players', (req, res) => {
     res.json(players)
 })
 
 // adicionar player na blacklist
-e.post('/Blacklist', (req, res) => {
+routes.post('/Blacklist', (req, res) => {
     const player: Player | undefined = req.body.player;
     if (player === undefined)
         return res.status(400).json({message: 'you should provide the user data'} as ApiError)
@@ -89,12 +94,12 @@ e.post('/Blacklist', (req, res) => {
 })
 
 // listar blacklist
-e.get('/Blacklist', (req, res) => {
+routes.get('/Blacklist', (req, res) => {
     res.json(blacklist)
 })
 
 // remover da blacklist
-e.delete('/Blacklist/:id', (req, res) => {
+routes.delete('/Blacklist/:id', (req, res) => {
     const id = req.params.id
     const index = blacklist.findIndex(b => b.id === id)
     if (index === -1)
@@ -104,12 +109,12 @@ e.delete('/Blacklist/:id', (req, res) => {
 })
 
 // listar logs
-e.get('/Logs', (req, res) => {
+routes.get('/Logs', (req, res) => {
     res.json(logs)
 })
 
 // marcar log como handled
-e.put('/Logs/:id', (req, res) => {
+routes.put('/Logs/:id', (req, res) => {
     const id: number = Number(req.params.id);
     const index = logs.findIndex(l => l.id === id);
     if (index === -1)
@@ -118,6 +123,16 @@ e.put('/Logs/:id', (req, res) => {
     res.json(logs[index] as Log)
 })
 
+e.use('/', (req, res, next) => {
+    const auth = req.headers['authorization']
+    if (auth === undefined || auth.length === 0)
+        return res.status(401).json({message: 'auth token not provided'} as ApiError)
+    if (!auth.startsWith('Bearer '))
+        return res.status(401).json({message: 'token shoul start with Bearer'} as ApiError)
+    if (authkeys.find(k => k === auth) !== undefined)
+        return res.status(401).json({message: 'Token not found in auth keys'} as ApiError)
+    return next();
+}, routes)
 
 e.listen(3000, () => {
     console.log('server running in localhost:3000')
