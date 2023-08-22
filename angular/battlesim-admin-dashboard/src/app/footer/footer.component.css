@@ -1,16 +1,15 @@
 footer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
     width: auto;
     background: #44a896;
+    text-align: center;
 }
 footer section {
-    display: flex;
-    justify-content: center;
-}
-footer section > * {
-    margin: 3em;
-}
-footer section div {
-    display: block;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 footer section div h2 {
     margin-bottom: 0.1em;
