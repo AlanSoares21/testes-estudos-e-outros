@@ -9,6 +9,8 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiCallsService } from './api-calls.service';
 import { LogsListComponent } from './logs-list/logs-list.component';
+import { BlacklistComponent } from './blacklist/blacklist.component';
+import { PlayersListComponent } from './players-list/players-list.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { LogsListComponent } from './logs-list/logs-list.component';
     FooterComponent,
     LoginComponent,
     LogsListComponent,
+    BlacklistComponent,
+    PlayersListComponent,
   ],
   imports: [
     BrowserModule,
