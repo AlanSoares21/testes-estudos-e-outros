@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { catchError, switchMap, throwError } from 'rxjs';
 import { isApiError } from './type-check';
 import { LogData } from './log-data';
+import { Player } from './player';
 
 function handleError(error: HttpErrorResponse) {
   let message: string;
@@ -52,6 +53,13 @@ export class ApiCallsService {
     return this.client.get<LogData[]>(
       `${environment.apiUrl}/Logs`, 
       {headers}
+    ).pipe(catchError(handleError))
+  }
+
+  GetPlayers() {
+    return this.client.get<Player[]>(
+      `${environment.apiUrl}/Players`, 
+      {headers: this.GetHeaders()}
     ).pipe(catchError(handleError))
   }
 }

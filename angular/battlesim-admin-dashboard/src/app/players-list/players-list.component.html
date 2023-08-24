@@ -1,2 +1,24 @@
 <a routerLink="/dashboard" class="btn-primary">home</a>
-<p>players-list works!</p>
+<section *ngIf="players.length > 0">
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Last login</th>
+                <th>Ip</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let player of players">
+                <td>{{player.entityName}}</td>
+                <td>{{player.email}}</td>
+                <td>{{player.lastLogin}}</td>
+                <td>{{player.ip}}</td>
+                <td>---</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+<p *ngIf="players.length === 0">No items to show</p>

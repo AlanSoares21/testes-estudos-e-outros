@@ -48,7 +48,7 @@ for (let index = 0; index < 64; index++) {
             email: `jogador${index}@email.com`, 
             entityName: `entity${index}`, 
             ip: `198.168.200.${index}`, 
-            lastLogin: Date.UTC.toString() 
+            lastLogin: (new Date()).toDateString()
         }
     );
 }
