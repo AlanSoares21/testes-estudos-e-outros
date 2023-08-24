@@ -1,0 +1,22 @@
+<a class="btn-primary">Back to home</a>
+<section *ngIf="logs.length > 0">
+    <table>
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Message</th>
+                <th>Hour</th>
+                <th>Check</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let log of logs">
+                <td>{{log.type}}</td>
+                <td>{{log.message}}</td>
+                <td>---</td>
+                <td><input type="checkbox" [checked]="log.checked" [disabled]="log.checked"/></td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+<p *ngIf="logs.length === 0">No logs to show</p>

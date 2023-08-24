@@ -6,6 +6,7 @@ import { ApiError } from './api-error';
 import { ActivatedRoute } from '@angular/router';
 import { catchError, switchMap, throwError } from 'rxjs';
 import { isApiError } from './type-check';
+import { LogData } from './log-data';
 
 function handleError(error: HttpErrorResponse) {
   let message: string;
@@ -40,9 +41,16 @@ export class ApiCallsService {
 
   GetDashboardMetrics() {
     const headers = this.GetHeaders()
-    console.log('headers da req', headers)
     return this.client.get<DashboardMetricsResponse>(
       `${environment.apiUrl}/DashboardMetrics`, 
+      {headers}
+    ).pipe(catchError(handleError))
+  }
+
+  GetLogs() {
+    const headers = this.GetHeaders()
+    return this.client.get<LogData[]>(
+      `${environment.apiUrl}/Logs`, 
       {headers}
     ).pipe(catchError(handleError))
   }

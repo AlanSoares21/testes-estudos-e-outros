@@ -8,6 +8,7 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiCallsService } from './api-calls.service';
+import { LogsListComponent } from './logs-list/logs-list.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { ApiCallsService } from './api-calls.service';
     DashboardComponent,
     FooterComponent,
     LoginComponent,
+    LogsListComponent,
   ],
   imports: [
     BrowserModule,
