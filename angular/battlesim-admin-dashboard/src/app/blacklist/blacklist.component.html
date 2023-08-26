@@ -1,2 +1,22 @@
 <a routerLink="/dashboard" class="btn-primary">home</a>
-<p>blacklist works!</p>
+<section *ngIf="players.length > 0">
+    <table>
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Last login</th>
+                <th>Ip</th>
+                <th>Select</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let player of players">
+                <td>{{player.email}}</td>
+                <td>{{player.lastLogin}}</td>
+                <td>{{player.ip}}</td>
+                <td><input type="checkbox"/></td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+<p *ngIf="players.length === 0">No items to show</p>
