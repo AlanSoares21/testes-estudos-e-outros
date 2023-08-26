@@ -41,8 +41,6 @@ interface Player {
 
 const players: Player[] = [];
 
-const blacklist: number[] = [];
-
 for (let index = 0; index < 64; index++) {
     players.push(
         { 
@@ -54,11 +52,6 @@ for (let index = 0; index < 64; index++) {
             blacklist: false
         }
     );
-}
-
-for (let index = 0; index < players.length; index += 10) {
-    blacklist.push(index);
-    players[index].blacklist = true;
 }
 
 const routes = ex.Router();
@@ -91,14 +84,13 @@ routes.post('/Blacklist', (req, res) => {
     const index = players.findIndex(p => p.id === player.id)
     if (index === -1)
         return res.status(404).json({message: `Player with id ${player.id} not found`} as ApiError)
-    blacklist.push(index)
     players[index].blacklist = true
     res.status(201).json(players[index])
 })
 
 // listar blacklist
 routes.get('/Blacklist', (req, res) => {
-    res.json(blacklist)
+    res.json(players.filter(p => p.blacklist))
 })
 
 // remover da blacklist
@@ -108,11 +100,7 @@ routes.delete('/Blacklist/:id', (req, res) => {
     if (pIndex === -1)
         return res.status(404).json({message: `User ${id} not found in the playerlist`} as ApiError)
     if (!players[pIndex].blacklist)
-        return res.status(404).json({message: `User ${players[pIndex].entityName}(${players[pIndex]}) is not in `} as ApiError)
-    const blackListIndex = blacklist.findIndex(ix => ix === pIndex)
-    if (blackListIndex === -1)
-        return res.status(404).json({message: `User ${id} not found in the blacklist`} as ApiError)
-    blacklist.splice(blackListIndex, 1)
+        return res.status(404).json({message: `User ${players[pIndex].entityName}(${players[pIndex]}) is not in blacklist`} as ApiError)
     players[pIndex].blacklist = false
     res.status(204).send()
 })
