@@ -4,4 +4,5 @@ export interface Player {
     email: string;
     lastLogin: string;
     ip: string;
+    blacklist: boolean;
 }

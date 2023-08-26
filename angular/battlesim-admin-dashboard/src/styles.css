@@ -18,6 +18,7 @@ p, a, h1, h2 {
     color: aliceblue;
     background: #2d9f7c;
     border-radius: 2px;
+    border: 0px;
     display: block;
     text-decoration: none;
 }

@@ -7,7 +7,7 @@
                 <th>Email</th>
                 <th>Last login</th>
                 <th>Ip</th>
-                <th>Options</th>
+                <th>Select</th>
             </tr>
         </thead>
         <tbody>
@@ -16,9 +16,11 @@
                 <td>{{player.email}}</td>
                 <td>{{player.lastLogin}}</td>
                 <td>{{player.ip}}</td>
-                <td>---</td>
+                <td><input type="checkbox" (change)="check(player.id)" [checked]="player.toBlacklist" [disabled]="player.blacklist"/></td>
             </tr>
         </tbody>
     </table>
+    <button class="btn-primary" (click)="sendPlayersToBlacklist()" [disabled]="sendingPlayersToBlacklist">Send players to blacklist</button>
+    <p *ngIf="sendingPlayersToBlacklist">Sedding players to blacklist please wait...</p>
 </section>
 <p *ngIf="players.length === 0">No items to show</p>

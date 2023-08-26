@@ -62,4 +62,11 @@ export class ApiCallsService {
       {headers: this.GetHeaders()}
     ).pipe(catchError(handleError))
   }
+
+  SendPlayerToBlacklist(player: Player) {
+    return this.client.post<Player>(
+      `${environment.apiUrl}/Blacklist`, {player}, 
+      {headers: this.GetHeaders()}
+    ).pipe(catchError(handleError))
+  }
 }
