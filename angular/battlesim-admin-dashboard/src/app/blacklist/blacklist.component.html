@@ -14,9 +14,10 @@
                 <td>{{player.email}}</td>
                 <td>{{player.lastLogin}}</td>
                 <td>{{player.ip}}</td>
-                <td><input type="checkbox"/></td>
+                <td><input type="checkbox" (change)="checkPlayer(player.id)" /></td>
             </tr>
         </tbody>
     </table>
+    <button class="btn-primary" (click)="removePlayersFromBlacklist()">Remove</button>
 </section>
 <p *ngIf="players.length === 0">No items to show</p>

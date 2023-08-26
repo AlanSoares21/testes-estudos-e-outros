@@ -76,4 +76,11 @@ export class ApiCallsService {
       {headers: this.GetHeaders()}
     ).pipe(catchError(handleError))
   }
+
+  RemovePlayerFromBlacklist(id: Player['id']) {
+    return this.client.delete(
+      `${environment.apiUrl}/Blacklist/${id}`,
+      {headers: this.GetHeaders()}
+    ).pipe(catchError(handleError))
+  }
 }
