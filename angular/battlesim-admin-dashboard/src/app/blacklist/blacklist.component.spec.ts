@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BlacklistComponent } from './blacklist.component';
+import { ApiCallsService } from '../api-calls.service';
+import { AppRoutingModule } from '../app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('BlacklistComponent', () => {
   let component: BlacklistComponent;
@@ -8,7 +11,14 @@ describe('BlacklistComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [BlacklistComponent]
+      declarations: [BlacklistComponent],
+      imports: [
+        HttpClientModule,
+        AppRoutingModule
+      ],
+      providers: [
+        ApiCallsService
+      ]
     });
     fixture = TestBed.createComponent(BlacklistComponent);
     component = fixture.componentInstance;
