@@ -11,6 +11,7 @@ import { ApiCallsService } from './api-calls.service';
 import { LogsListComponent } from './logs-list/logs-list.component';
 import { BlacklistComponent } from './blacklist/blacklist.component';
 import { PlayersListComponent } from './players-list/players-list.component';
+import { TableComponent } from './table/table.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { PlayersListComponent } from './players-list/players-list.component';
     LogsListComponent,
     BlacklistComponent,
     PlayersListComponent,
+    TableComponent,
   ],
   imports: [
     BrowserModule,

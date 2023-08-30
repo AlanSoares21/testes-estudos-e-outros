@@ -1,0 +1,10 @@
+<table>
+    <thead>
+        <th *ngFor="let h of headers" [ngStyle]="getHeaderStyle(h)">{{h.displayText}}</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of items">
+            <td *ngFor="let h of headers" [ngStyle]="getHeaderStyle(h)">{{item[h.fieldName || '']}}</td>
+        </tr>
+    </tbody>
+</table>

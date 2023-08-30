@@ -1,0 +1,30 @@
+table {
+    width: 99%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+thead {
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+}
+
+tbody {
+    width: 100%;
+    display: block;
+    overflow: auto;
+    max-height: 40vh;
+}
+
+tbody tr {
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+    border-top: solid 1px black;
+}
+
+tbody tr td~td {
+    border-left: dashed 1px black;
+}
