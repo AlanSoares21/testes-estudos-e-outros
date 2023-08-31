@@ -8,6 +8,7 @@ import { catchError, switchMap, throwError } from 'rxjs';
 import { isApiError } from './type-check';
 import { LogData } from './log-data';
 import { Player } from './player';
+import { StorageService } from './storage.service';
 
 function handleError(error: HttpErrorResponse) {
   let message: string;
@@ -29,15 +30,15 @@ export class ApiCallsService {
   
   constructor(
     private client: HttpClient,
-    private route: ActivatedRoute) {}
+    private storage: StorageService) {}
 
   SetAccessToken(accessToken: string) {
-    localStorage.setItem('AccessToken', accessToken)
+    this.storage.setAuthToken(accessToken)
   }
 
   private GetHeaders() {
     return new HttpHeaders()
-      .append('Authorization', `Bearer ${localStorage.getItem('AccessToken')}`)
+      .append('Authorization', `Bearer ${this.storage.getAuthToken()}`)
   }
 
   GetDashboardMetrics() {

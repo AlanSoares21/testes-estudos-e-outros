@@ -12,6 +12,7 @@ import { LogsListComponent } from './logs-list/logs-list.component';
 import { BlacklistComponent } from './blacklist/blacklist.component';
 import { PlayersListComponent } from './players-list/players-list.component';
 import { TableComponent } from './table/table.component';
+import { StorageService } from './storage.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { TableComponent } from './table/table.component';
     HttpClientModule
   ],
   providers: [
-    ApiCallsService
+    ApiCallsService,
+    StorageService
   ],
   bootstrap: [AppComponent]
 })
