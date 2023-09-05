@@ -9,8 +9,8 @@
                 <input 
                     *ngIf="h.input !== undefined" 
                     [type]="h.input.type"
-                    checked="{{h.input.checked ? h.input.checked(item) : false}}"
-                    disabled="{{h.input.disabled ? h.input.disabled(item) : false}}"
+                    [checked]="h.input.checked !== undefined ? h.input.checked(item) : false"
+                    [disabled]="h.input.disabled !== undefined ? h.input.disabled(item) : false"
                     (change)="h.input.change && h.input.change(item, itemIndex)"
                 />
             </td>

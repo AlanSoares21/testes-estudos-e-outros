@@ -1,25 +1,6 @@
 <a routerLink="/dashboard" class="btn-primary">home</a>
 <section *ngIf="players.length > 0">
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Last login</th>
-                <th>Ip</th>
-                <th>Select</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let player of players">
-                <td>{{player.entityName}}</td>
-                <td>{{player.email}}</td>
-                <td>{{player.lastLogin}}</td>
-                <td>{{player.ip}}</td>
-                <td><input type="checkbox" (change)="check(player.id)" [checked]="player.toBlacklist" [disabled]="player.blacklist"/></td>
-            </tr>
-        </tbody>
-    </table>
+    <app-table [items]="players" [headers]="tableHeaders" />
     <button class="btn-primary" (click)="sendPlayersToBlacklist()" [disabled]="sendingPlayersToBlacklist">Send players to blacklist</button>
     <p *ngIf="sendingPlayersToBlacklist">Sedding players to blacklist please wait...</p>
 </section>
