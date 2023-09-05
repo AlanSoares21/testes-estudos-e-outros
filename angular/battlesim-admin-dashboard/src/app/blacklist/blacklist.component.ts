@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Player } from '../player';
 import { ApiCallsService } from '../api-calls.service';
 import { finalize, forkJoin } from 'rxjs';
+import { TableComponent } from '../table/table.component';
+import { TableHeader } from '../table-header';
 
 interface PlayerData extends Player {
   remove: boolean
@@ -14,17 +16,27 @@ function formatPlayer(value: Player): PlayerData {
 @Component({
   selector: 'app-blacklist',
   templateUrl: './blacklist.component.html',
-  styleUrls: ['./blacklist.component.css']
+  styleUrls: ['./blacklist.component.css'],
+  providers: [TableComponent]
 })
 export class BlacklistComponent {
   players: PlayerData[] = []
+  headers: TableHeader[] = [
+    {id: 'email', displayText: 'Email', fieldName: 'email'},
+    {id: 'lastLogin', width: '20%', displayText: 'Last Login', fieldName: 'lastLogin'},
+    {id: 'ip', width: '20%', displayText: 'Ip Address', fieldName: 'ip'},
+    {id: 'select', width: '10%', displayText: 'Select',
+      input: {
+        type: 'checkbox',
+        change: (_, index) => this.checkPlayer(index)
+      }
+    }
+  ]
 
   constructor(private api: ApiCallsService) {}
 
-  checkPlayer(id: string) {
-    const index = this.players.findIndex(p => p.id === id)
-    if (index !== -1)
-      this.players[index].remove = !this.players[index].remove
+  checkPlayer(index: number) {
+    this.players[index].remove = !this.players[index].remove
   }
 
   removePlayersFromBlacklist() {
