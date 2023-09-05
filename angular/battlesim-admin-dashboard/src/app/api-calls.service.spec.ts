@@ -89,6 +89,11 @@ describe('ApiCallsService', () => {
   }
 
   beforeEach(() => {
+    httpClientSpy = jasmine.createSpyObj<HttpClient>('HttpClient', ['get'])
+    
+    storageSpy = jasmine.createSpyObj<StorageService>('StorageService', ['setAuthToken', 'getAuthToken'])
+    storageSpy.getAuthToken.and.returnValue(authToken)
+    
     TestBed.configureTestingModule({
       imports: [
         AppRoutingModule
@@ -96,19 +101,16 @@ describe('ApiCallsService', () => {
       providers: [
         {
           provide: HttpClient, 
-          useValue: jasmine.createSpyObj<HttpClient>('HttpClient', ['get'])
+          useValue: httpClientSpy
         },
         {
           provide: StorageService, 
-          useValue: jasmine.createSpyObj<StorageService>('StorageService', ['setAuthToken', 'getAuthToken'])
+          useValue: storageSpy
         }
       ]
     });
     service = TestBed.inject(ApiCallsService);
-    httpClientSpy = TestBed.inject(HttpClient) as jasmine.SpyObj<HttpClient>
 
-    storageSpy = TestBed.inject(StorageService) as jasmine.SpyObj<StorageService>
-    storageSpy.getAuthToken.and.returnValue(authToken)
   });
 
   it('should be created', () => {
