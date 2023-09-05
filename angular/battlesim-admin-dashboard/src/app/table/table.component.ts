@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { TableHeader } from '../table-header';
-import { NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-table',

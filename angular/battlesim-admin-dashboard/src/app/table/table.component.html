@@ -3,8 +3,17 @@
         <th *ngFor="let h of headers" [ngStyle]="getHeaderStyle(h)">{{h.displayText}}</th>
     </thead>
     <tbody>
-        <tr *ngFor="let item of items">
-            <td *ngFor="let h of headers" [ngStyle]="getHeaderStyle(h)">{{item[h.fieldName || '']}}</td>
+        <tr *ngFor="let item of items; let itemIndex=index;">
+            <td *ngFor="let h of headers" [ngStyle]="getHeaderStyle(h)">
+                {{item[h.fieldName || '']}}
+                <input 
+                    *ngIf="h.input !== undefined" 
+                    [type]="h.input.type"
+                    checked="{{h.input.checked ? h.input.checked(item) : false}}"
+                    disabled="{{h.input.disabled ? h.input.disabled(item) : false}}"
+                    (change)="h.input.change && h.input.change(item, itemIndex)"
+                />
+            </td>
         </tr>
     </tbody>
 </table>
